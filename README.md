@@ -5,6 +5,21 @@ A local-first prompt library with variables, tags, categories, and JSON import/e
 
 Store, organize, and reuse your best AI prompts. Wrap variable names in `{curly_braces}` and PromptSmith will turn them into fill-in fields whenever you use the prompt.
 
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.119-009688?style=flat-square&logo=fastapi&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0-D71F00?style=flat-square&logo=sqlalchemy&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-3-003B57?style=flat-square&logo=sqlite&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)
+
+---
+
+## 📸 Screenshot
+
+> Add a screenshot here after your first run. Drag a PNG into the GitHub README editor — it will upload and insert the correct link automatically.
+
+<!-- ![PromptSmith screenshot](docs/screenshot.png) -->
+
 ---
 
 ## ✨ Features
