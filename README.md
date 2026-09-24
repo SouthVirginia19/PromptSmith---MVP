@@ -1,4 +1,5 @@
 
+
 # ⚒️ PromptSmith
 
 A local-first prompt library with variables, tags, categories, and JSON import/export — built with FastAPI, SQLAlchemy, and vanilla JavaScript.
@@ -18,7 +19,7 @@ Store, organize, and reuse your best AI prompts. Wrap variable names in `{curly_
 
 > Add a screenshot here after your first run. Drag a PNG into the GitHub README editor — it will upload and insert the correct link automatically.
 
-<!-- ![PromptSmith screenshot](docs/screenshot.png) -->
+<img width="3387" height="1208" alt="Снимок экрана 2026-09-24 223221" src="https://github.com/user-attachments/assets/02b640ef-c9b8-4113-8395-b4e41710c7d7" />
 
 ---
 
