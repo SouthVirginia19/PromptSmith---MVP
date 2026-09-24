@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PromptSmith</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body data-tab="prompts">
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">⚒️</span>
+      <span class="brand-name">PromptSmith</span>
+    </div>
+
+    <nav class="main-tabs">
+      <button data-tab="prompts" class="active">📚 Prompts</button>
+      <button data-tab="about">👤 About</button>
+    </nav>
+
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input id="search" type="search" placeholder="Search prompts, tags, content...">
+    </div>
+
+    <div class="topbar-actions">
+      <button id="btn-export" class="ghost" title="Export all prompts to JSON">📤</button>
+      <button id="btn-import" class="ghost" title="Import prompts from JSON">📥</button>
+      <button id="btn-random" class="ghost" title="Random prompt (R)">🎲 Random</button>
+      <button id="btn-new" class="primary" title="New prompt (N)">+ New Prompt</button>
+    </div>
+    <input id="file-import" type="file" accept=".json,application/json" hidden>
+  </header>
+
+  <main class="page">
+    <!-- ============ TAB: PROMPTS ============ -->
+    <div data-view="prompts">
+      <section class="hero">
+        <div class="hero-text">
+          <h1>Your prompt library</h1>
+          <p>Store, organize, and reuse your best AI prompts. Variables in <code>{curly_braces}</code> become fill-in fields on use.</p>
+        </div>
+        <div id="hero-stats" class="hero-stats"></div>
+      </section>
+
+      <div class="workspace">
+        <aside class="sidebar">
+          <section class="side-section">
+            <h4>Quick filters</h4>
+            <ul id="quick-filters" class="filter-list quick"></ul>
+          </section>
+          <section class="side-section">
+            <h4>Categories</h4>
+            <ul id="categories" class="filter-list"></ul>
+          </section>
+          <section class="side-section">
+            <h4>Tags</h4>
+            <div id="tags" class="tag-cloud"></div>
+          </section>
+        </aside>
+
+        <section class="content">
+          <div class="content-head">
+            <div class="content-title">
+              <h2 id="list-title">All prompts</h2>
+              <span id="list-count" class="count-badge">0</span>
+            </div>
+            <div class="content-tools">
+              <select id="sort" title="Sort">
+                <option value="recent">Recently updated</option>
+                <option value="created">Recently created</option>
+                <option value="name">Name (A–Z)</option>
+                <option value="favorites">Favorites first</option>
+              </select>
+              <div class="view-toggle" role="tablist">
+                <button data-view="grid" class="active" title="Grid view">▦</button>
+                <button data-view="list" title="List view">☰</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="grid" class="grid"></div>
+        </section>
+      </div>
+    </div>
+
+    <!-- ============ TAB: ABOUT ============ -->
+    <div data-view="about" class="hidden">
+      <section class="profile-hero">
+        <div class="profile-avatar-wrap">
+          <img id="prof-avatar" class="profile-avatar" alt="">
+        </div>
+        <div class="profile-info">
+          <h1 id="prof-name">Loading...</h1>
+          <a id="prof-handle" class="profile-handle" target="_blank" rel="noopener"></a>
+          <p id="prof-bio" class="profile-bio"></p>
+          <div id="prof-meta" class="profile-meta"></div>
+        </div>
+      </section>
+
+      <section id="prof-stats" class="hero-stats profile-stats"></section>
+
+      <section class="profile-section">
+        <h2>🛠 Tech stack</h2>
+        <div id="prof-langs" class="lang-bars"></div>
+      </section>
+
+      <section class="profile-section">
+        <h2>⭐ Featured repositories</h2>
+        <div id="prof-repos" class="repo-grid"></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ============ EDIT MODAL ============ -->
+  <div id="modal-edit" class="modal-backdrop">
+    <div class="modal">
+      <header>
+        <h2 id="edit-title">New Prompt</h2>
+        <button class="modal-close" type="button">×</button>
+      </header>
+      <div class="modal-body">
+        <label>Title<input id="f-title" placeholder="e.g. Code Reviewer" /></label>
+        <label>Description<input id="f-description" placeholder="Short summary" /></label>
+        <div class="row">
+          <label>Category<input id="f-category" placeholder="general" list="category-suggestions" /></label>
+          <label>Tags<input id="f-tags" placeholder="comma, separated" /></label>
+        </div>
+        <datalist id="category-suggestions"></datalist>
+        <label>Content
+          <textarea id="f-content" rows="14" placeholder="You are a senior {language} developer..."></textarea>
+        </label>
+        <p class="hint">Tip: wrap variable names in <code>{curly_braces}</code> — they become input fields when someone uses the prompt.</p>
+      </div>
+      <footer>
+        <button class="modal-close ghost" type="button">Cancel</button>
+        <button id="btn-save" class="primary" type="button">Save</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ============ USE MODAL ============ -->
+  <div id="modal-use" class="modal-backdrop">
+    <div class="modal">
+      <header>
+        <h2 id="use-title">Prompt</h2>
+        <button class="modal-close" type="button">×</button>
+      </header>
+      <div class="modal-body" id="vars-form"></div>
+      <footer>
+        <button class="modal-close ghost" type="button">Close</button>
+        <button id="btn-copy" class="primary" type="button">📋 Copy result</button>
+      </footer>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
